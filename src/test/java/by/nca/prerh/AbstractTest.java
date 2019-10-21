@@ -15,8 +15,9 @@ public class AbstractTest {
 
     @BeforeEach
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "D://work//driver//chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D://Work//vika//IdeaProjects//testselenium//drivers//chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.get("https://pre-rh.nca.by/signin.html");
         AuthorizationPage authorizationPage = new AuthorizationPage(driver);
         mainPage = authorizationPage.submit(User.SUPER_ADMIN);

@@ -8,8 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 public class MainPage {
     private WebDriver driver;
 
-    @FindBy (xpath = "//a[@title='Кликните чтобы перейти в журнал']")
+    @FindBy(xpath = "//a[@title='Кликните чтобы перейти в журнал']")
     private WebElement orderBookButton;
+
+    @FindBy(xpath = "//a[@title='Кликните чтобы перейти в реестр']")
+    private WebElement registerOfObjectsButton;
+
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -19,5 +23,10 @@ public class MainPage {
     public OrderBookPage naavigateToOrderBook() {
         orderBookButton.click();
         return new OrderBookPage(driver);
+    }
+
+    public RegisterOfObjectsPage navigateToRegisterOfObgects() {
+        registerOfObjectsButton.click();
+        return new RegisterOfObjectsPage(driver);
     }
 }

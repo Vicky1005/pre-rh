@@ -3,10 +3,7 @@ package by.nca.prerh;
 import by.nca.prerh.model.User;
 import by.nca.prerh.page.AuthorizationPage;
 import by.nca.prerh.page.MainPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -17,12 +14,16 @@ public class AuthorisationTest {
 
     @BeforeEach
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "D://work//driver//chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "D://work//driver//chromedriver.exe"); //дом
+        System.setProperty("webdriver.chrome.driver", "D://Work//vika//IdeaProjects//testselenium//drivers//chromedriver.exe"); //работа
         driver = new ChromeDriver();
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         driver.get("https://pre-rh.nca.by/signin.html");
     }
 
     @Test
+    @DisplayName("Успешная авторизация")
     public void successLogin() {
         AuthorizationPage authorizationPage = new AuthorizationPage(driver);
         MainPage mainPage = authorizationPage.submit(User.SUPER_ADMIN);
@@ -31,6 +32,7 @@ public class AuthorisationTest {
 
 
     @Test
+    @DisplayName("Авторизация с невалидными данными")
     public void errorLogin() {
         AuthorizationPage authorizationPage = new AuthorizationPage(driver);
         authorizationPage.submitWithError(User.INVALID_USER);
